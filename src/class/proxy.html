@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = new Proxy(
+        {},
+        {
+          get: function (target, propKey, receiver) {
+            console.log(`getting ${propKey}!`);
+            return Reflect.get(target, propKey, receiver);
+          },
+          set: function (target, propKey, value, receiver) {
+            console.log(target);
+            console.log(`setting ${propKey}!`);
+            console.log(value);
+            console.log(receiver);
+
+            return Reflect.set(target, propKey, value, receiver);
+          },
+        }
+      );
+
+      var obj = {
+        age: 20,
+
+        name: "ming",
+      };
+      for (var key in obj) {
+        console.log(key);
+      }
+    </script>
+  </body>
+</html>

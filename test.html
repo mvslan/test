@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn" onclick="fn()()">点击增加</button>
+    <div id="div">-1</div>
+    <p>
+      <a>
+        <div>p,a,div</div>
+      </a>
+    </p>
+
+    <script>
+      new Promise((resolve, reject) => {
+        console.log(1);
+        resolve();
+      })
+        .then(
+          () => {
+            console.log("2");
+            return {
+              then: 33,
+            };
+          },
+          (rej) => {
+            console.log("rej:");
+            console.log(rej);
+          }
+        )
+        .then(
+          (res) => {
+            console.log(4);
+            console.log(res);
+          },
+          (rej) => {
+            console.log("rej:");
+            console.log(rej);
+          }
+        );
+    </script>
+  </body>
+</html>

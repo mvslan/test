@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let nodeList = [
+        {
+          id: 3,
+          parentId: 2,
+        },
+        {
+          id: 4,
+          parentId: 1,
+        },
+        {
+          id: 0,
+          parentId: 0,
+        },
+        {
+          id: 1,
+          parentId: 0,
+        },
+        {
+          id: 2,
+          parentId: 1,
+        },
+      ];
+
+      function changeNodeList(nodeList) {
+        for (let i = 0; i < nodeList.length; ) {
+          let node = nodeList[i];
+          if (node.parentId === 0) {
+            i++;
+          } else {
+            let parentNode = findNode(nodeList, node.parentId);
+            parentNode.children = parentNode.children || [];
+            parentNode.children.push(node);
+            nodeList.splice(i, 1);
+          }
+        }
+      }
+
+      function findNode(nodeList, id) {
+        for (let i = 0; i < nodeList.length; i++) {
+          let node = nodeList[i];
+          if (node.id === id) {
+            return node;
+          } else {
+            if (node.children && node.children.length) {
+              return findNode(node.children, id);
+            } else {
+              continue;
+            }
+          }
+        }
+      }
+
+      changeNodeList(nodeList);
+      console.log(nodeList);
+    </script>
+  </body>
+</html>
